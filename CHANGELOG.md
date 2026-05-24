@@ -6,6 +6,12 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) e i
 
 ## [Unreleased]
 
+### Changed
+
+- repo: instalación rápida con `npx skills add` en README
+
+**Skills:** —
+
 ## [0.2.0] - 2026-05-23
 
 ### Added
