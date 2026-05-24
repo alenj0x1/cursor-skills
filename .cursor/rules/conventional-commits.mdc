@@ -1,0 +1,60 @@
+---
+description: Conventional Commits por scope al hacer commit o push en este repo
+alwaysApply: true
+---
+
+# Conventional Commits por scope
+
+Este repositorio es una colección de Agent Skills. Cada commit debe tener un único ámbito lógico.
+
+## Formato
+
+```
+<type>(<scope>): <subject>
+
+[cuerpo opcional pero recomendado en cambios amplios]
+```
+
+- **Subject:** imperativo, ~72 caracteres máximo
+- **Types:** `feat`, `fix`, `docs`, `chore`, `refactor`
+- **Scopes:** nombre de skill (`ai-professor`), `changelog`, `cursor`, `repo`
+- Tipo y scope en **inglés**; subject y body pueden estar en **español**
+
+## Reglas
+
+1. **Un commit = un scope** — no mezclar cambios de skill con infra (cursor, changelog) en el mismo commit
+2. **Una skill por commit `feat`** — si tocas dos skills, dos commits
+3. **Cuerpo detallado** cuando el cambio sea amplio: qué cambió, por qué, qué archivos o skills se ven afectados
+4. **Actualizar `CHANGELOG.md`** al commitear cambios que afecten una skill (sección `[Unreleased]` o versión correspondiente)
+5. **No añadir** `Co-authored-by` de Cursor ni hooks `--no-verify` salvo petición explícita
+
+## Ejemplos
+
+```
+feat(ai-professor): add AskQuestion flow for student diagnosis
+
+- Mandatory AskQuestion in phases 0, 1, 2, and 4
+- New references: interactive-questions, navigation-conventions
+
+Skills: ai-professor
+```
+
+```
+docs(changelog): add CHANGELOG.md for v0.2.0
+
+Skills: ai-professor
+```
+
+```
+chore(cursor): add conventional commits scoped rule
+```
+
+## Scopes válidos
+
+| Scope | Cuándo usarlo |
+|-------|---------------|
+| `ai-professor` | Cambios en `ai-professor/` |
+| `[nombre-skill]` | Otra skill futura en su carpeta |
+| `repo` | README, LICENSE, raíz del proyecto |
+| `changelog` | Solo `CHANGELOG.md` |
+| `cursor` | `.cursor/rules/` y config del IDE |
