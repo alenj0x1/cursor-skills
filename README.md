@@ -6,7 +6,25 @@ Colección personal de Agent Skills para Cursor que amplían las capacidades del
 
 Cada skill vive en su propia carpeta. Instala solo las que necesites.
 
-### 1. Obtener el repositorio
+### Instalación rápida (recomendada)
+
+Con [skills](https://github.com/vercel-labs/skills) puedes instalar una skill directamente desde este repositorio:
+
+```bash
+npx skills add https://github.com/alenj0x1/cursor-skills --skill <skill>
+```
+
+Ejemplo:
+
+```bash
+npx skills add https://github.com/alenj0x1/cursor-skills --skill ai-professor
+```
+
+Reinicia Cursor o abre un chat nuevo para que detecte la skill.
+
+### Instalación manual
+
+#### 1. Obtener el repositorio
 
 ```bash
 git clone https://github.com/alenj0x1/cursor-skills.git
@@ -14,14 +32,16 @@ git clone https://github.com/alenj0x1/cursor-skills.git
 
 También puedes descargar el ZIP desde GitHub si no usas Git.
 
-### 2. Copiar la skill
+#### 2. Copiar la skill
 
 Copia la carpeta de la skill que quieras (por ejemplo, `ai-professor/`) a una de estas ubicaciones:
 
-| Ámbito | Ruta |
-|--------|------|
+
+| Ámbito                         | Ruta                                                                             |
+| ------------------------------ | -------------------------------------------------------------------------------- |
 | Personal (todos tus proyectos) | `~/.cursor/skills/` en macOS/Linux, o `%USERPROFILE%\.cursor\skills\` en Windows |
-| Por proyecto (solo ese repo) | `.cursor/skills/` en la raíz del proyecto |
+| Por proyecto (solo ese repo)   | `.cursor/skills/` en la raíz del proyecto                                        |
+
 
 Ejemplo en Windows (PowerShell):
 
@@ -35,7 +55,7 @@ Ejemplo en macOS/Linux:
 cp -r cursor-skills/ai-professor ~/.cursor/skills/ai-professor
 ```
 
-### 3. Verificar
+#### 3. Verificar
 
 La estructura final debe quedar así:
 
