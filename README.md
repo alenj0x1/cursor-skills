@@ -43,8 +43,13 @@ La estructura final debe quedar así:
 ~/.cursor/skills/ai-professor/
 ├── SKILL.md
 └── references/
+    ├── interactive-questions.md
+    ├── navigation-conventions.md
+    ├── playground-template.md
+    ├── practice-template.md
     ├── progress-states.md
-    └── readme-template.md
+    ├── readme-template.md
+    └── welcome-messages.md
 ```
 
 Reinicia Cursor o abre un chat nuevo para que detecte la skill.
@@ -62,12 +67,20 @@ Convierte al agente en un profesor que enseña cualquier tema mediante módulos 
 - «Quiero aprender [tema]»
 - «Enséñame [tema]»
 - «Sé mi profesor»
-- «Crea un currículo para [tema]»
+- «Crea una ruta de aprendizaje para [tema]»
 - «Arma los módulos para aprender [tema]»
 - «Quiero estudiar [tema]»
 - «ai-professor»
 
 **Cómo usarla en Cursor:** escribe en el chat una de las frases anteriores, o adjunta la skill manualmente con `@` / `/` según tu versión de Cursor.
+
+**Interactividad:** la skill usa la herramienta nativa `AskQuestion` de Cursor para el diagnóstico, validar la ruta de aprendizaje y otras decisiones — verás opciones clicables en lugar de preguntas solo en texto. Funciona de forma fiable en Plan mode; en Agent mode puede depender del modelo. Si no aparece el diálogo, añade esta regla global de usuario:
+
+```
+Use the AskQuestion tool for any interaction requiring user input like choosing between options, confirming a proposed action, or clarifying an ambiguous request.
+```
+
+Más info: [foro Cursor sobre AskQuestion en Agent mode](https://forum.cursor.com/t/allow-askquestion-tool-calls-in-agent-mode-or-any-mode/152517).
 
 **Estructura:**
 
@@ -75,8 +88,13 @@ Convierte al agente en un profesor que enseña cualquier tema mediante módulos 
 ai-professor/
 ├── SKILL.md                      # Instrucciones completas del agente
 └── references/
-    ├── progress-states.md        # Estados de progreso del estudiante
-    └── readme-template.md        # Plantilla para README de módulos
+    ├── interactive-questions.md  # Plantillas AskQuestion por fase
+    ├── navigation-conventions.md
+    ├── playground-template.md
+    ├── practice-template.md
+    ├── progress-states.md
+    ├── readme-template.md
+    └── welcome-messages.md
 ```
 
 **Documentación completa:** [ai-professor/SKILL.md](ai-professor/SKILL.md)
