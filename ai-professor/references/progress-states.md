@@ -24,18 +24,60 @@ El estudiante muestra que:
 - Las soluciones son incorrectas en aspectos fundamentales (no en detalles menores)
 - Hay confusión conceptual evidente entre dos o más ideas del módulo
 
+### Evaluación híbrida (escritas + código)
+
+Para módulos con prácticas mixtas o de código:
+
+| Tipo | Dónde leer | Qué evaluar |
+|------|------------|-------------|
+| Respuesta escrita | `solutions/practice-[NN]-[desc].md` | Comprensión conceptual, explicaciones, razonamiento |
+| Código | `playground/practice-[NN]/` | Correctitud, estilo, cumplimiento de criterios de éxito del enunciado |
+| Mixta | Ambas ubicaciones | Ambos criterios; la práctica no se aprueba si falla cualquiera de las partes requeridas |
+
 ### Criterio de "punto débil"
 Registrar en PROGRESS.md cuando:
 - Un concepto específico fue respondido incorrectamente en 2+ prácticas
 - El estudiante mismo menciona que algo no le quedó claro
 - Las respuestas muestran una confusión recurrente
 
+## Formato de PROGRESS.md con links
+
+El **título visible** (H1) debe ser `# Ruta de aprendizaje — [Tema]`, no `PROGRESS — [Tema]`. El nombre del archivo sigue siendo `PROGRESS.md`.
+
+La tabla de módulos y la sección "Módulo Actual" deben usar links relativos. Ver `references/navigation-conventions.md`.
+
+```markdown
+# Ruta de aprendizaje — [Tema]
+
+**Estudiante:** [nombre]
+**Inicio:** [fecha]
+**Última actividad:** [fecha]
+
+---
+
+## 📚 Módulos
+
+| # | Módulo | Estado | Prácticas | Fecha |
+|---|--------|--------|-----------|-------|
+| 01 | [Fundamentos](01-fundamentos/README.md) | 🔄 En curso | [1/3](01-fundamentos/practices/) | 2026-05-23 |
+| 02 | [Variables](02-variables/README.md) | 🔒 Bloqueado | [0/2](02-variables/practices/) | — |
+
+## 📝 Módulo Actual
+
+**[Módulo 01 — Fundamentos](01-fundamentos/README.md)**
+- Estado: 🔄 En curso
+- Prácticas entregadas: 1/3 — [ver prácticas](01-fundamentos/practices/) · [mis soluciones](01-fundamentos/solutions/)
+- Playground: [01-fundamentos/playground/](01-fundamentos/playground/)
+```
+
+Al actualizar estados o fechas, **nunca** romper los links existentes.
+
 ## Formato de entrada en "Puntos Débiles Detectados"
 
 ```markdown
 ## 💡 Puntos Débiles Detectados
 
-### [Fecha] — Módulo [N]: [nombre]
+### [Fecha] — [Módulo 01 — Fundamentos](01-fundamentos/README.md)
 - **Concepto:** [nombre del concepto]
 - **Observación:** [qué confundió al estudiante]
 - **Recomendación:** [qué repasar o practicar]
@@ -47,7 +89,7 @@ Registrar en PROGRESS.md cuando:
 ```markdown
 ## 📋 Historial de Feedback
 
-### Módulo [N] — [nombre] — [fecha]
+### [Módulo 01 — Fundamentos](01-fundamentos/README.md) — [fecha]
 **Veredicto:** ✅ Aprobado / ⚠️ Aprobado con puntos débiles
 
 **Fortalezas:**
@@ -56,5 +98,5 @@ Registrar en PROGRESS.md cuando:
 **Áreas de mejora:**
 - [Lo que mejorar]
 
-**Decisión de avance:** Avanzó a Módulo [N+1] / Tomó refuerzo antes de avanzar
+**Decisión de avance:** Avanzó a [Módulo [N+1]](02-[nombre-modulo]/README.md) / Tomó refuerzo antes de avanzar
 ```

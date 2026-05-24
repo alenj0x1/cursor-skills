@@ -2,12 +2,20 @@
 
 Usar esta plantilla como guía estructural. Adaptar el contenido y la extensión al tema. No es una plantilla rígida: si un módulo necesita más secciones, agregarlas. Si una sección no aplica al tema, omitirla con criterio.
 
+Ver `references/navigation-conventions.md` para reglas de enlaces.
+
 ---
 
 ```markdown
 # Módulo [N] — [Nombre del Módulo]
 
 > **Objetivo:** Al terminar este módulo, serás capaz de [verbo concreto + resultado esperado].
+
+## Navegación
+
+← [Progreso general](../PROGRESS.md) · [Ejemplos](examples/) · [Prácticas](practices/) · [Mis soluciones](solutions/) · [Playground](playground/)
+
+_(Omitir link a Playground si el módulo no tiene prácticas de código.)_
 
 ---
 
@@ -92,6 +100,20 @@ Esto sirve como "hoja de referencia" una vez que el estudiante avance.]
 
 ---
 
+## 📂 Contenido de este módulo
+
+### Ejemplos
+- [Ejemplo 01 — [descripción]](examples/ejemplo-01-[desc].md)
+- [Ejemplo 02 — [descripción]](examples/ejemplo-02-[desc].md)
+
+### Prácticas
+- [Practice 01 — [descripción]](practices/practice-01-[desc].md) → [solución](solutions/practice-01-[desc].md) · [playground](playground/practice-01/)
+- [Practice 02 — [descripción]](practices/practice-02-[desc].md) → [solución](solutions/practice-02-[desc].md)
+
+_(Incluir link a playground solo en prácticas de código.)_
+
+---
+
 ## 📚 Referencias y recursos
 
 ### Documentación oficial
@@ -107,9 +129,33 @@ Esto sirve como "hoja de referencia" una vez que el estudiante avance.]
 
 ## ➡️ Siguiente paso
 
-Una vez que sientas que entendiste este módulo, revisa los ejemplos en `examples/`
-y luego completa las prácticas en `practices/`.
+1. Revisa los [ejemplos](examples/) para ver los conceptos en acción
+2. Completa las [prácticas](practices/):
+   - Respuestas escritas → [solutions/](solutions/)
+   - Ejercicios de código → [playground/](playground/) _(si aplica)_
+3. Cuando termines, avísame en el chat para revisar tus soluciones juntos
+```
 
-Cuando termines tus soluciones, crea archivos `practice-XX-solucion.md` con tus respuestas
-y avísame para revisarlas juntos.
+---
+
+## Plantilla de archivo de ejemplo (`examples/ejemplo-01-[desc].md`)
+
+Nomenclatura: `ejemplo-XX`, nunca `example-XX`. Título siempre `# Ejemplo [N] — ...`.
+
+```markdown
+# Ejemplo [N] — [Título descriptivo]
+
+## Navegación
+
+← [Progreso general](../../PROGRESS.md) · [Módulo](../README.md) · [Ejemplos](.) · [Prácticas](../practices/) · [Mis soluciones](../solutions/)
+
+---
+
+## ¿Qué problema resuelve este ejemplo?
+
+[Contexto breve]
+
+---
+
+[Contenido del ejemplo con explicaciones]
 ```
