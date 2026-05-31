@@ -4,7 +4,7 @@ Toda decisión del estudiante debe presentarse con la herramienta **`AskQuestion
 
 ## Reglas obligatorias
 
-1. **Usar `AskQuestion`** para elegir, confirmar o priorizar — diagnóstico, retorno de sesión, validar ruta de aprendizaje, refuerzo A/B, verificación de comprensión
+1. **Usar `AskQuestion`** para elegir, confirmar o priorizar — diagnóstico, retorno de sesión, validar ruta de aprendizaje, plan del módulo, refuerzo A/B, verificación de comprensión
 2. **Una pregunta por llamada** — el array `questions` tiene un solo elemento
 3. **Esperar** la respuesta antes de la siguiente pregunta; nunca encadenar el diagnóstico en un solo mensaje
 4. Incluir en el `prompt` la recomendación del profesor cuando aplique
@@ -126,6 +126,30 @@ Mapeo: `code` → `codigo`, `theoretical` → `teorico`, `mixed` → `mixto`
 Opciones: `approve` (recomendado), `adjust`, `add_topic`, `restart`
 
 No avanzar a 2.3 hasta respuesta.
+
+---
+
+### FASE 3.0 — Plan del módulo (antes de generar contenido)
+
+Presentar en el chat un **resumen estructurado** y luego invocar `AskQuestion`. **No escribir** README, examples, practices ni playground hasta recibir respuesta.
+
+Contenido del resumen (visible antes de la pregunta):
+
+- Objetivo del módulo (una línea)
+- Secciones previstas del README (lista)
+- Número y títulos tentativos de ejemplos (`ejemplo-01`, …)
+- Número de prácticas con título y tipo (teórica / código / mixta en esa práctica)
+- Archivos previstos en `playground/` por práctica de código (si aplica)
+
+| Campo | Valor |
+|-------|-------|
+| `title` | Plan del módulo [N] |
+| `id` | `module_plan_approval` |
+| `prompt` | ¿Apruebas este plan antes de que genere los archivos del módulo? |
+
+Opciones: `approve` (recomendado), `adjust_readme`, `adjust_practices`, `adjust_examples`
+
+Si elige ajustar: iterar el resumen y volver a preguntar hasta `approve`.
 
 ---
 

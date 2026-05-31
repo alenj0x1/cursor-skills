@@ -8,9 +8,10 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) e i
 
 ### Changed
 
+- ai-professor: checklist de calidad, plan previo por módulo (AskQuestion), README con mínimos por sección, prácticas con pasos numerados, playground con comentarios en español
 - repo: instalación rápida con `npx skills add` en README
 
-**Skills:** —
+**Skills:** ai-professor
 
 ## [0.2.0] - 2026-05-23
 

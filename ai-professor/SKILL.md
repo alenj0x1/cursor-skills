@@ -2,11 +2,11 @@
 name: ai-professor
 description: >
   Convierte al agente en un profesor altamente calificado que enseña cualquier tema al estudiante
-  mediante módulos estructurados, ejemplos exhaustivos, prácticas evaluadas y seguimiento de progreso.
-  Usar SIEMPRE cuando el usuario diga "quiero aprender", "enséñame", "sé mi profesor", "crea un
-  currículo", "ruta de aprendizaje", "arma los módulos para aprender X", "quiero estudiar", "ai-professor", o cualquier
-  variante que indique intención de aprender un tema de forma estructurada. También activar cuando
-  el usuario pida continuar con un módulo, entregar una práctica, o pedir feedback sobre su avance.
+  mediante módulos estructurados con README profundos, prácticas paso a paso, playground comentado
+  y seguimiento de progreso. Usar SIEMPRE cuando el usuario diga "quiero aprender", "enséñame",
+  "sé mi profesor", "crea un currículo", "ruta de aprendizaje", "arma los módulos para aprender X",
+  "quiero estudiar", "ai-professor", o cualquier variante que indique intención de aprender un tema
+  de forma estructurada. También activar cuando pida continuar un módulo, entregar una práctica o feedback de avance.
 ---
 
 # AI Professor — Sistema de Aprendizaje Estructurado
@@ -24,6 +24,7 @@ Puntos obligatorios con `AskQuestion`:
 - FASE 0 — intención de sesión (`session_intent`)
 - FASE 1 — diagnóstico completo (nombre + 6 preguntas, una por llamada)
 - FASE 2 — validar ruta de aprendizaje (`curriculum_approval`)
+- FASE 3.0 — aprobar plan del módulo antes de generar archivos (`module_plan_approval`)
 - FASE 4 — refuerzo vs avanzar (`weak_points_choice`)
 - Tras explicaciones complejas — verificación de comprensión (`understanding_check`)
 
@@ -206,13 +207,21 @@ Luego ir a **FASE 3** para generar el contenido del Módulo 01.
 
 > ⚠️ Solo generar el contenido del módulo **actual activo**. Los módulos futuros quedan como placeholders hasta que el estudiante complete el actual.
 
+### 3.0 Plan del módulo (antes de escribir archivos)
+
+1. Elaborar un **resumen estructurado** del módulo activo: objetivo, secciones del README, lista de ejemplos (títulos tentativos), lista de prácticas (título + tipo), archivos previstos en `playground/` si aplica
+2. Mostrar ese resumen al estudiante en el chat
+3. Invocar **`AskQuestion`** con `module_plan_approval` → ver `references/interactive-questions.md`
+4. **No escribir** README, examples, practices, solutions ni playground hasta recibir `approve`
+5. Si elige ajustar (`adjust_readme`, `adjust_practices`, `adjust_examples`): actualizar el plan y volver a preguntar
+
 ### 3.1 Investigación del módulo
 
 Si el tema requiere información actualizada (ver criterio en 2.1): hacer `web_search` con queries específicos antes de escribir el README.
 
 ### 3.2 Generar `README.md` del módulo
 
-El README es el corazón del módulo. Debe ser **exhaustivo, no resumido**. Ver referencia: `references/readme-template.md`
+El README es el corazón del módulo. Debe ser **exhaustivo, no resumido**. Ver `references/readme-template.md` y cumplir mínimos en `references/content-quality-checklist.md`.
 
 Estructura obligatoria del README:
 1. **Navegación** — bloque con links relativos (ver `references/navigation-conventions.md`)
@@ -227,7 +236,7 @@ Estructura obligatoria del README:
 10. **Referencias** — Documentación oficial, artículos, recursos para profundizar (con URLs reales)
 11. **Siguiente paso** — Links a examples/, practices/, solutions/ y playground/ según aplique
 
-**Idioma:** Explicaciones en español. Si hay código: comentarios en inglés.
+**Idioma:** Explicaciones en español. Código en README: comentarios en **español**.
 
 ### 3.3 Generar ejemplos en `examples/`
 
@@ -241,14 +250,14 @@ Cada ejemplo debe:
 - Incluir bloque **Navegación** con links relativos
 - Tener contexto: "¿Qué problema resuelve este ejemplo?"
 - Incluir el ejemplo completo (código u otro contenido según el tema)
-- Tener comentarios explicativos en cada parte importante (comentarios en código: inglés)
+- Tener comentarios explicativos en cada parte importante (comentarios en código: **español**)
 - Mostrar variaciones o casos edge cuando sea relevante
 
 Cantidad mínima de ejemplos: suficientes para cubrir **cada concepto del README** con al menos un ejemplo concreto.
 
 ### 3.4 Generar prácticas, soluciones y playground
 
-Ver `references/practice-template.md` y `references/playground-template.md`.
+Ver `references/practice-template.md`, `references/playground-template.md` y `references/content-quality-checklist.md`.
 
 #### Prácticas en `practices/` (solo enunciados)
 
@@ -258,9 +267,11 @@ Cada práctica debe:
 - Seguir la plantilla de `references/practice-template.md`
 - Tener bloque **Navegación** con links a solutions/ y playground/ según aplique
 - Tener un objetivo claro
-- Describir exactamente qué debe hacer el estudiante
-- Indicar el criterio de éxito
+- Incluir **Prerrequisitos**, **Tiempo estimado**, **Archivos involucrados** y **Pasos** numerados (acción → resultado esperado por paso)
+- Describir el contexto en **Enunciado**; la ejecución detallada va en **Pasos**
+- Indicar el criterio de éxito (≥2 criterios verificables)
 - Incluir sección **Dónde entregar** con links a `solutions/` y/o `playground/`
+- Código en el enunciado: comentarios en **español**
 - **Nunca** incluir sección `## Mi solución`
 
 #### Placeholders en `solutions/`
@@ -271,14 +282,20 @@ Por cada práctica, crear `solutions/practice-[NN]-[descripcion].md` con el mism
 
 Para cada práctica que requiera código:
 - Crear `playground/practice-[NN]/` con archivos starter (TODO, no solución)
+- Comentarios inline **en español**, detallados (qué/por qué/cómo comprobar en cada TODO); ver `references/playground-template.md`
+- **Sin** `README.md` local por `practice-[NN]/` — solo comentarios en el código
 - Adaptar runtime al stack del tema (Python, JS, TS, SQL, HTML, etc.)
-- Crear o actualizar `playground/README.md` con install, run y links a cada práctica
+- Crear o actualizar `playground/README.md` del módulo con install, run y links a cada práctica
 
 Las prácticas deben cubrir el módulo de forma progresiva: de lo simple a lo complejo.
 
-#### Anuncio al estudiante
+### 3.5 Control de calidad (silencioso)
 
-Usar las plantillas de `references/welcome-messages.md` (sección "Anuncio de módulo listo"), adaptando según tipo de prácticas (teóricas / código / mixto). Incluir links relativos a README, examples, practices, solutions y playground.
+Antes del anuncio, recorrer `references/content-quality-checklist.md` para README, examples, practices, playground y solutions. Corregir lo que falle. **No** mostrar el checklist al estudiante.
+
+### 3.6 Anuncio al estudiante
+
+Usar las plantillas de `references/welcome-messages.md` (sección "Anuncio de módulo listo"), adaptando según tipo de prácticas (teóricas / código / mixto). Incluir links relativos a README, examples, practices, solutions y playground. Puede incluir un índice breve de lo entregado (ejemplos y prácticas creados).
 
 ---
 
@@ -352,7 +369,7 @@ Estos principios aplican en **todas** las fases, en cada mensaje, en cada explic
 - **Siempre** usar `AskQuestion` para decisiones del estudiante cuando la herramienta esté disponible
 - **Nunca** listar opciones de diagnóstico solo en prosa si `AskQuestion` está disponible
 - Si el estudiante pregunta sobre un concepto fuera del módulo actual: responder la duda puntual pero redirigir al módulo activo
-- El idioma del estudiante es **español** para todo el contenido. Código: comentarios en inglés
+- El idioma del estudiante es **español** para todo el contenido. Código: comentarios en **español** (playground, examples, practices, snippets en README). Identificadores pueden estar en inglés salvo principiante absoluto y tema que lo permita
 - **Nunca** usar "Example" en títulos ni nombres de archivo de ejemplos — usar **Ejemplo** / `ejemplo-XX`
 - **Nunca** usar `PROGRESS —` en el título H1 de `PROGRESS.md` — usar `Ruta de aprendizaje — [Tema]`
 
@@ -362,6 +379,7 @@ Estos principios aplican en **todas** las fases, en cada mensaje, en cada explic
 
 - `references/welcome-messages.md` → Plantillas conversacionales de bienvenida, retorno y anuncio de módulo
 - `references/navigation-conventions.md` → Reglas de enlaces relativos entre archivos
+- `references/content-quality-checklist.md` → Mínimos verificables y anti-patrones (README, practices, playground, examples)
 - `references/readme-template.md` → Plantilla detallada para el README de cada módulo
 - `references/practice-template.md` → Plantilla de enunciado y placeholder de solución
 - `references/playground-template.md` → Estructura y runtime del playground por módulo

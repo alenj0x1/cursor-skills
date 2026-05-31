@@ -2,11 +2,13 @@
 
 El playground vive en `01-[nombre-modulo]/playground/` y solo se crea cuando el diagnóstico (FASE 1) confirma que el estudiante quiere practicar escribiendo código.
 
+**Calidad:** cumplir [`content-quality-checklist.md`](content-quality-checklist.md). Comentarios **en español**, detallados, solo inline (sin README por práctica).
+
 ## Estructura
 
 ```
 01-[nombre-modulo]/playground/
-├── README.md                 ← Cómo instalar y ejecutar
+├── README.md                 ← Cómo instalar y ejecutar (nivel módulo)
 ├── practice-01/
 │   └── [archivos starter]
 ├── practice-02/
@@ -15,6 +17,8 @@ El playground vive en `01-[nombre-modulo]/playground/` y solo se crea cuando el 
 ```
 
 Cada carpeta `practice-[NN]/` corresponde a una práctica de código del módulo. Las prácticas teóricas/escritas no tienen carpeta aquí.
+
+**No crear** `README.md` dentro de `practice-[NN]/` — la guía va en comentarios del código.
 
 ---
 
@@ -59,11 +63,42 @@ Cada carpeta `practice-[NN]/` corresponde a una práctica de código del módulo
 Cada `playground/practice-[NN]/` debe contener:
 
 - Archivos mínimos para empezar (no la solución completa)
-- Comentarios `TODO` indicando qué implementar
-- Comentarios en **inglés** en el código
-- Referencia al enunciado en un comentario o README local si el ejercicio es complejo
+- Comentarios en **español**, detallados (ver sección siguiente)
+- **Sin** README local en la carpeta de la práctica
 
-**Regla:** nunca incluir la solución final. Solo scaffolding + instrucciones.
+**Regla:** nunca incluir la solución final. Solo scaffolding + instrucciones en comentarios.
+
+---
+
+## Comentarios inline obligatorios (español)
+
+En el archivo entry de cada práctica incluir:
+
+1. **Encabezado** — título de la práctica + ruta al enunciado: `../practices/practice-NN-[desc].md`
+2. **Mapa del archivo** — qué hace cada sección o archivo del starter
+3. **Por función/bloque** — propósito del código ya escrito (scaffolding)
+4. **Cada TODO** — qué implementar, por qué importa en el módulo, cómo comprobar localmente (sin dar la solución)
+5. **Qué no modificar** — líneas o archivos fijos del boilerplate
+
+Ejemplo mínimo aceptable (Python):
+
+```python
+# Práctica 01 — [Título]
+# Enunciado completo: ../practices/practice-01-[desc].md
+#
+# Este archivo es tu punto de partida. No borres las funciones marcadas;
+# completa solo los bloques TODO.
+
+def solve():
+    # TODO: [qué implementar — acción concreta]
+    # Por qué: [vincula con el concepto del README]
+    # Comprobar: [comando o salida esperada al ejecutar main.py]
+    pass
+
+if __name__ == "__main__":
+    # Ejecuta: python practice-01/main.py desde la carpeta playground/
+    solve()
+```
 
 ---
 
@@ -83,13 +118,15 @@ playground/
     └── main.py
 ```
 
-`main.py` starter:
+`main.py` starter (comentarios en español):
+
 ```python
-# Practice 01 — [title]
+# Práctica 01 — [título]
 # Enunciado: ../practices/practice-01-[desc].md
 
 def solve():
-    # TODO: implement your solution here
+    # TODO: implementa aquí tu solución (ver enunciado, paso 1)
+    # Comprobar: python practice-01/main.py — debe [descripción breve]
     pass
 
 if __name__ == "__main__":
@@ -140,6 +177,8 @@ playground/
     └── index.html
 ```
 
+Comentarios en español en `script.js` y en HTML con `<!-- -->` donde haga falta.
+
 Ejecutar: abrir `index.html` en el navegador o usar Live Server
 
 ### SQL
@@ -154,14 +193,15 @@ playground/
     └── query.sql
 ```
 
-Incluir en README cómo conectar (SQLite file, PostgreSQL, etc.)
+Comentarios SQL con `--` en español. Incluir en README del módulo cómo conectar (SQLite, PostgreSQL, etc.)
 
 ### Otros lenguajes
 
 Seguir el mismo patrón:
-- `README.md` con install + run
-- Una carpeta por práctica
+- `README.md` del módulo con install + run
+- Una carpeta por práctica (sin README local)
 - Archivo entry point con nombre convencional del lenguaje (`main.go`, `Main.java`, `lib.rs`, etc.)
+- Comentarios inline en español según sintaxis del lenguaje
 
 ---
 

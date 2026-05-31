@@ -2,6 +2,8 @@
 
 Cada archivo en `practices/` contiene **solo el enunciado**. La respuesta del estudiante va en `solutions/` (escrita) o `playground/` (código). Ver `references/navigation-conventions.md` para reglas de enlaces.
 
+**Calidad:** cumplir [`content-quality-checklist.md`](content-quality-checklist.md) — el estudiante debe poder seguir la práctica sin adivinar pasos.
+
 ---
 
 ```markdown
@@ -19,9 +21,40 @@ Cada archivo en `practices/` contiene **solo el enunciado**. La respuesta del es
 
 ---
 
+## Prerrequisitos
+
+- [Concepto(s) del README que debe haber leído — con link si ayuda]
+- [Herramientas instaladas o archivos que ya deben existir]
+
+---
+
+## Tiempo estimado
+
+[~X minutos — ajustar según complejidad]
+
+---
+
+## Archivos involucrados
+
+- [ruta/relativa/al/archivo.md o carpeta]
+- [otro archivo si aplica]
+
+---
+
 ## Enunciado
 
-[Descripción exacta de qué debe hacer el estudiante. Ser específico: inputs, outputs, restricciones, contexto.]
+[Contexto narrativo: situación, restricciones generales, inputs/outputs esperados a alto nivel.
+La ejecución detallada va en Pasos.]
+
+---
+
+## Pasos
+
+1. [Acción concreta] → [Resultado esperado verificable]
+2. [Siguiente acción] → [Resultado esperado]
+3. ...
+
+_(Cada paso debe indicar qué hacer, dónde (archivo o sección) y cómo saber que el paso salió bien.)_
 
 ---
 
@@ -60,6 +93,8 @@ _(Incluir solo las filas que apliquen a esta práctica.)_
 4. Nomenclatura consistente: `practice-01-[desc].md` en `practices/` = `practice-01-[desc].md` en `solutions/`
 5. Progresión: de lo simple a lo complejo dentro del módulo
 6. Cantidad: suficientes para cubrir **cada concepto importante** del README
+7. **Siempre** incluir Prerrequisitos, Tiempo estimado, Archivos involucrados y Pasos numerados
+8. Código en el enunciado: comentarios en **español**
 
 ## Placeholder en solutions/
 
